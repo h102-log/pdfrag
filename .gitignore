@@ -1,0 +1,147 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# env / secrets
+.env
+backend/.env
+
+# storage (keep dir, ignore files)
+storage/files/*
+!storage/files/.gitkeep
+
+# node (frontend, W6+)
+node_modules/
+.next/
+
+# OS
+.DS_Store
+Thumbs.db
+.tscache/
+.claude/skills/*/*/*secret*
+secret-key-*
+# Version: 0.33.0
+!.env.example
+.claude/.env.local*
+.LSOverride
+.aws/credentials
+# Python Cache & Bytecode
+*.sublime-project
+# Mac
+# Credential patterns in environment files
+.coverage
+*.egg
+.aws/config
+.directory
+# Purpose: Essential patterns for user projects
+*.log
+out/
+# Virtual Environments
+*_key.*
+*-key.*
+.firebase/
+.claude/plans/
+*.p12
+.uv-cache/
+.env/
+ehthumbs.db
+.env.*
+*.pfx
+*.tmp
+*.secret.*
+[Dd]esktop.ini
+*.key.*
+.AppleDouble
+# Claude Code Configuration
+build/
+# Cloud provider credentials
+*~
+# Updated: 2026-01-10
+.claude/settings.local.json
+*_secret.*
+.nuxt/
+# IDE & Editors
+.cursor/
+.vercel/
+.claude/settings.local.*.json
+*.pem
+*.temp
+*.pyo
+*.pyd
+.moai-backups/
+*-backup/
+.DocumentRevisions-V100
+*.sqlite
+.claude/skills/*/*/*key*
+# Certificate files
+# MoAI-ADK Package Distribution .gitignore
+# Linux
+# OS Files
+# ===========================================
+*.sublime-workspace
+logs/
+env/
+# Backups
+# Node.js (for docs/Nextra)
+*.swo
+*-secret.*
+.claude/local/
+.claude/skills/*/secrets/
+.claude/skills/*/*/*token*
+*_backup_*/
+*.tsbuildinfo
+.Trashes
+*.swp
+*.sqlite3
+.TemporaryItems
+*.bak
+coverage.json
+# Logs & Temporary Files
+api-key-*
+# Test Coverage
+*.pyc
+# Windows
+*.jks
+*.backup
+# Secrets and Credentials (CRITICAL)
+# Deployment & CI/CD
+*.suo
+# Private keys (specific patterns to avoid false positives)
+*.dbm
+*.rdb
+.uv_cache/
+*.sw?
+*-api-key.*
+*_token=*
+.turbo/
+.#*
+private-key*
+.Spotlight-V100
+.claude/skills/*/.env*
+.mypy_cache/
+*.db
+*_secret=*
+# FIXED: Issue #237 - Replaced overly broad *key* and *secret* patterns
+.fseventsd
+dist-ssr/
+*.njsproj
+# Environment files
+.idea/
+*.backup/
+htmlcov/
+# ============================================
+# Build Tools & Frameworks
+dist/
+# Build Artifacts & Distribution
+.netlify/
+.VolumeIcon.icns
+# Skill-specific credentials
+.vscode/
+*-secret-key.*
+secret-*.*
+*.sln

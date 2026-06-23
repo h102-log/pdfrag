@@ -1,0 +1,55 @@
+[project]
+name = "graphrag-backend"
+version = "0.1.0"
+description = "GraphRAG multi-format document Q&A backend"
+requires-python = ">=3.11,<3.13"   # 3.14 NOT supported by ML stack yet — use 3.11/3.12
+dependencies = [
+    # --- API ---
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "python-multipart>=0.0.9",      # file upload
+    "sse-starlette>=2.1",           # SSE streaming
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    # --- RAG engine ---
+    "llama-index>=0.11",
+    "llama-index-graph-stores-neo4j>=0.3",
+    "llama-index-vector-stores-qdrant>=0.3",
+    "llama-index-llms-anthropic>=0.3",
+    "llama-index-embeddings-openai>=0.2",
+    "llama-index-retrievers-bm25>=0.4",
+    # --- loaders ---
+    "pymupdf>=1.24",                # PDF
+    "unstructured[docx,pptx,xlsx,md,html]>=0.15",
+    # --- stores / db ---
+    "qdrant-client>=1.10",
+    "neo4j>=5.23",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    # --- reranker ---
+    "sentence-transformers>=3.0",   # BGE-Reranker
+    # --- eval ---
+    # ragas 0.4.x imports langchain_community.chat_models.vertexai at load time,
+    # which langchain-community>=0.4 removed -> pin to 0.2.x (langchain 0.3 era).
+    # langchain is pulled in ONLY by ragas; LlamaIndex does not need it.
+    "ragas>=0.2.10,<0.3",
+    "langchain-community<0.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5",
+    "pytest>=8.0",
+    "streamlit>=1.37",              # W3-W4 validation UI
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
