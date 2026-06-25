@@ -1,0 +1,10 @@
+{"id": "m1", "type": "multihop", "question": "베어링 B-7 진동이 기준치를 초과하면 가장 먼저 정지해야 하는 설비는 무엇인가?", "answer": "모터 M-22", "source": {"doc": "pump_manual.md", "location": "4. 이상 시 처리 절차"}, "reasoning": "B-7 진동초과 →(절차) M-22 정지"}
+{"id": "m2", "type": "multihop", "question": "냉각수 순환 펌프 P-101을 구동하는 모터의 절연저항 점검 주기는?", "answer": "1개월", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "P-101 →(구동) M-22 →(점검주기 표) 1개월"}
+{"id": "m3", "type": "multihop", "question": "P-101의 축을 지지하는 베어링의 진동 점검은 어느 팀이 담당하는가?", "answer": "설비팀", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "P-101 →(지지) B-7 →(점검주기 표) 설비팀"}
+{"id": "m4", "type": "multihop", "question": "베어링 B-7 진동이 윤활유 점검 후에도 지속되면 수행해야 하는 작업과 담당 팀은?", "answer": "베어링 B-7 교체, 설비팀이 수행", "source": {"doc": "pump_manual.md", "location": "4. 이상 시 처리 절차"}, "reasoning": "진동 지속 →(절차) B-7 교체 →(담당) 설비팀"}
+{"id": "m5", "type": "multihop", "question": "P-101에서 누설이 발생하면 가장 먼저 점검할 구성요소의 점검 주기는?", "answer": "1일", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "누설 →(먼저 점검) 기계식 실 S-5 →(점검주기 표) 1일"}
+{"id": "s1", "type": "simple", "question": "기계식 실 S-5 누설 점검 주기는?", "answer": "1일", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "표 직접 조회"}
+{"id": "s2", "type": "simple", "question": "모터 M-22 절연저항 점검 주기는?", "answer": "1개월", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "표 직접 조회"}
+{"id": "s3", "type": "simple", "question": "베어링 B-7 진동 점검 주기는?", "answer": "1주", "source": {"doc": "pump_manual.md", "location": "3. 점검 주기"}, "reasoning": "표 직접 조회"}
+{"id": "s4", "type": "simple", "question": "냉각수 순환 펌프 P-101의 출구는 어느 설비로 연결되는가?", "answer": "열교환기 HX-3", "source": {"doc": "pump_manual.md", "location": "1. 개요"}, "reasoning": "본문 직접 조회"}
+{"id": "s5", "type": "simple", "question": "P-101은 어떤 구성 요소로 이루어지는가?", "answer": "임펠러, 케이싱, 기계식 실 S-5", "source": {"doc": "pump_manual.md", "location": "2. 구성 요소"}, "reasoning": "본문 직접 조회"}
