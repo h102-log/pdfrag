@@ -4,6 +4,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # backend/.env regardless of the process working directory (repo root, backend/, ...)
 _ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
+# repo-root storage/files (what docker-compose mounts at ./storage), anchored to
+# this file so it is independent of the process working directory.
+# parents[2] = backend/, parents[3] = repo root.
+_STORAGE_DIR = Path(__file__).resolve().parents[3] / "storage" / "files"
 
 
 class Settings(BaseSettings):
@@ -28,7 +32,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://graphrag:graphrag123@localhost:5432/graphrag"
 
     # Storage
-    storage_dir: str = "../storage/files"
+    storage_dir: str = str(_STORAGE_DIR)
 
 
 settings = Settings()

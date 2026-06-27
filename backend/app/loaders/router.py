@@ -5,7 +5,9 @@ from pathlib import Path
 
 from app.loaders.base import LoadedDoc
 
-_UNSTRUCTURED_EXT = {".docx", ".xlsx", ".pptx", ".html", ".htm", ".eml"}
+# .eml is intentionally absent: the installed Unstructured build exposes no
+# email extra, so .eml is unsupported for now (not in the W1 sample set).
+_UNSTRUCTURED_EXT = {".docx", ".xlsx", ".pptx", ".html", ".htm"}
 
 
 def load(path: str | Path) -> LoadedDoc:

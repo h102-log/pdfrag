@@ -9,18 +9,25 @@ FILES = ["pump_manual.md", "pump_report.docx", "pump_spec.pdf"]
 
 def main() -> None:
     for name in FILES:
-        doc = load(SAMPLES / name)
-        print("=" * 70)
-        print(doc.summary())
-        print("download_url:", doc.download_url)
-        for i, el in enumerate(doc.elements):
-            preview = el.content.replace("\n", " ")[:90]
-            print(f"  [{i}] {el.type:5} @ {el.location:14} | {preview}")
-        # show one full table if present
-        tbl = next((e for e in doc.elements if e.type == "table"), None)
-        if tbl:
-            print("  --- first table ---")
-            print("  " + tbl.content.replace("\n", "\n  "))
+        # isolate each format: one loader crash (e.g. a native docx/torch
+        # failure) must not stop the remaining files from being processed.
+        try:
+            doc = load(SAMPLES / name)
+            print("=" * 70)
+            print(doc.summary())
+            print("download_url:", doc.download_url)
+            for i, el in enumerate(doc.elements):
+                preview = el.content.replace("\n", " ")[:90]
+                print(f"  [{i}] {el.type:5} @ {el.location:14} | {preview}")
+            # show one full table if present
+            tbl = next((e for e in doc.elements if e.type == "table"), None)
+            if tbl:
+                print("  --- first table ---")
+                print("  " + tbl.content.replace("\n", "\n  "))
+        except Exception as exc:
+            print("=" * 70)
+            print(f"  [ERROR] {name}: {type(exc).__name__}: {exc}")
+            continue
 
 
 if __name__ == "__main__":

@@ -43,6 +43,10 @@ dev = [
     "streamlit>=1.37",              # W3-W4 validation UI
 ]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
 [tool.ruff]
 line-length = 100
 target-version = "py311"

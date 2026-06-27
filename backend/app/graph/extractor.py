@@ -55,10 +55,35 @@ VALIDATION_SCHEMA: dict[str, list[str]] = {
 }
 
 
+def _is_placeholder(key: str | None) -> bool:
+    """True if the API key is empty or an obvious dummy/example placeholder.
+
+    Catches the keys shipped in backend/.env.example (``sk-ant-xxxx``,
+    ``sk-xxxx``) and other dummies so PoC3 fails fast instead of late with a
+    401, while accepting a realistic (long, non-dummy) key.
+    """
+    if not key:
+        return True
+    k = key.strip().lower()
+    if len(k) < 20:  # real keys are long
+        return True
+    if k in {"your-key", "your-api-key", "your-anthropic-key", "changeme"}:
+        return True
+    if k.startswith("sk-xxx"):
+        return True
+    if k.startswith("sk-ant-"):
+        suffix = k[len("sk-ant-"):]
+        if set(suffix.replace("-", "")) <= {"x"}:  # sk-ant-xxxx...
+            return True
+        if suffix.startswith("your"):
+            return True
+    return False
+
+
 def build_llm() -> Anthropic:
     """Claude client from settings; fail loudly if the key is still a placeholder."""
     key = settings.anthropic_api_key
-    if not key or key.startswith("sk-xxx") or key == "":
+    if _is_placeholder(key):
         raise RuntimeError(
             "ANTHROPIC_API_KEY missing/placeholder — set a real key in backend/.env "
             "before running PoC3."
